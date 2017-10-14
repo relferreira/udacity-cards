@@ -7,7 +7,10 @@ import {
   StyleSheet
 } from 'react-native';
 import { connect } from 'react-redux';
+import { NavigationActions } from 'react-navigation';
 
+import { saveDeck } from '../actions';
+import { submitDeck } from '../utils/api';
 import CustomButton from './CustomButton';
 
 class NewDeck extends Component {
@@ -20,6 +23,23 @@ class NewDeck extends Component {
   }
   handleTextChange = value => this.setState({ value });
 
+  handleSubmit = () => {
+    const { value: key } = this.state;
+    const newDeck = { [key]: { title: key, questions: [] } };
+    this.props.saveDeck(newDeck);
+    this.toHome();
+
+    submitDeck(newDeck);
+  };
+
+  toHome = () => {
+    this.props.navigation.dispatch(
+      NavigationActions.back({
+        key: 'NewDeck'
+      })
+    );
+  };
+
   render() {
     const { value } = this.state;
     return (
@@ -31,7 +51,9 @@ class NewDeck extends Component {
           value={value}
           onChangeText={this.handleTextChange}
         />
-        <CustomButton style={styles.btn}>Submit</CustomButton>
+        <CustomButton style={styles.btn} onPress={this.handleSubmit}>
+          Submit
+        </CustomButton>
       </View>
     );
   }
@@ -58,4 +80,8 @@ const styles = StyleSheet.create({
   }
 });
 
-export default connect()(NewDeck);
+const mapDispatchToProps = {
+  saveDeck
+};
+
+export default connect(null, mapDispatchToProps)(NewDeck);

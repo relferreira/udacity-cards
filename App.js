@@ -1,5 +1,5 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { Component } from 'react';
+import { StyleSheet, Text, View, ActivityIndicator } from 'react-native';
 import { TabNavigator } from 'react-navigation';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
@@ -7,9 +7,13 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import reducer from './reducers';
 import { primaryColor, white } from './utils/colors';
+import { fetchDecks } from './utils/api';
+import { receiveDecks } from './actions';
 import CustomStatusBar from './components/CustomStatusBar';
 import Decks from './components/Decks';
 import NewDeck from './components/NewDeck';
+
+const store = createStore(reducer);
 
 const Tabs = TabNavigator(
   {
@@ -46,10 +50,38 @@ const Tabs = TabNavigator(
   }
 );
 
-export default class App extends React.Component {
+export default class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      loading: true,
+      error: null
+    };
+  }
+  componentDidMount() {
+    fetchDecks()
+      .then(decks => {
+        store.dispatch(receiveDecks(decks));
+        this.setState({ loading: false });
+      })
+      .catch(err => {
+        console.warn(err);
+        this.setState({ error: 'Something exploded!' });
+      });
+  }
+
   render() {
+    const { loading, error } = this.state;
+    if (loading) return <ActivityIndicator />;
+    if (error)
+      return (
+        <View style={styles.errorContainer}>
+          <Text>{error}</Text>
+        </View>
+      );
     return (
-      <Provider store={createStore(reducer)}>
+      <Provider store={store}>
         <View style={styles.container}>
           <CustomStatusBar
             backgroundColor={primaryColor}
@@ -66,5 +98,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff'
+  },
+  errorContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 });
