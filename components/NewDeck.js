@@ -11,6 +11,7 @@ import { NavigationActions } from 'react-navigation';
 
 import { saveDeck } from '../actions';
 import { submitDeck } from '../utils/api';
+import { white } from '../utils/colors';
 import CustomButton from './CustomButton';
 
 class NewDeck extends Component {
@@ -63,7 +64,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    backgroundColor: white
   },
   title: {
     margin: 16,

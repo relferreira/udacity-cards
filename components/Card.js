@@ -1,14 +1,14 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 import { gray } from '../utils/colors';
 
-const Card = ({ title, num, style }) => {
+const Card = ({ title, num, style, ...rest }) => {
   return (
-    <View style={[styles.card, style]}>
+    <TouchableOpacity style={[styles.card, style]} {...rest}>
       <Text style={styles.title}>{title}</Text>
       <Text style={styles.description}>{num} cards</Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 

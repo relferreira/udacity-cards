@@ -3,6 +3,7 @@ import { View, Text, FlatList, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
+import { white } from '../utils/colors';
 import Card from './Card';
 
 const DATA = [
@@ -11,10 +12,20 @@ const DATA = [
 ];
 
 class Decks extends Component {
+  handleItemClick = title => {
+    this.props.navigation.navigate('DeckDetail', { deckId: title });
+  };
+
   renderItem = ({ item }) => {
     const { title, questions } = item;
-    const num = questions.length;
-    return <Card title={title} num={num} />;
+    const num = questions && questions.length;
+    return (
+      <Card
+        title={title}
+        num={num}
+        onPress={() => this.handleItemClick(title)}
+      />
+    );
   };
   render() {
     const { decks } = this.props;
@@ -35,7 +46,8 @@ class Decks extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: white
   },
   emptyContainer: {
     flex: 1,

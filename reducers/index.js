@@ -7,7 +7,8 @@ export default function decks(state = {}, action) {
     case SAVE_DECK:
       return { ...state, ...action.deck };
     case REMOVE_DECK:
-      return { ...state, [action.deckId]: null };
+      const { [action.deckId]: deletedItem, ...rest } = state;
+      return rest;
     default:
       return state;
   }

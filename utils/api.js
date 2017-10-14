@@ -6,11 +6,11 @@ export function submitDeck(deck) {
   return AsyncStorage.mergeItem(STORAGE_KEY, JSON.stringify(deck));
 }
 
-export function removeDeck(key) {
+export function removeStoredDeck(key) {
   return AsyncStorage.getItem(STORAGE_KEY).then(results => {
     const data = JSON.parse(results);
     delete data[key];
-    AsyncStorage.setItem(key, JSON.stringify(data));
+    AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(data));
   });
 }
 

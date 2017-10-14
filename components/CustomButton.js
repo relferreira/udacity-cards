@@ -3,10 +3,10 @@ import { Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 import { white, accentColor } from '../utils/colors';
 
-const CustomButton = ({ children, style, ...rest }) => {
+const CustomButton = ({ children, style, textStyle, ...rest }) => {
   return (
     <TouchableOpacity style={[styles.btn, style]} {...rest}>
-      <Text style={styles.text}>{children}</Text>
+      <Text style={[styles.text, textStyle]}>{children}</Text>
     </TouchableOpacity>
   );
 };

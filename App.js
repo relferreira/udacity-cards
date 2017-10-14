@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, ActivityIndicator } from 'react-native';
-import { TabNavigator } from 'react-navigation';
+import { TabNavigator, StackNavigator } from 'react-navigation';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -12,6 +12,7 @@ import { receiveDecks } from './actions';
 import CustomStatusBar from './components/CustomStatusBar';
 import Decks from './components/Decks';
 import NewDeck from './components/NewDeck';
+import DeckDetail from './components/DeckDetail';
 
 const store = createStore(reducer);
 
@@ -41,6 +42,9 @@ const Tabs = TabNavigator(
     }
   },
   {
+    navigationOptions: {
+      header: null
+    },
     tabBarOptions: {
       activeTintColor: white,
       style: {
@@ -49,6 +53,21 @@ const Tabs = TabNavigator(
     }
   }
 );
+
+const MainNavigator = StackNavigator({
+  Home: {
+    screen: Tabs
+  },
+  DeckDetail: {
+    screen: DeckDetail,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: primaryColor
+      }
+    }
+  }
+});
 
 export default class App extends Component {
   constructor(props) {
@@ -87,7 +106,7 @@ export default class App extends Component {
             backgroundColor={primaryColor}
             barStyle="light-content"
           />
-          <Tabs />
+          <MainNavigator />
         </View>
       </Provider>
     );
