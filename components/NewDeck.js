@@ -15,6 +15,10 @@ import { white } from '../utils/colors';
 import CustomButton from './CustomButton';
 
 class NewDeck extends Component {
+  static navigationOptions = () => ({
+    title: 'New Deck'
+  });
+
   constructor(props) {
     super(props);
 

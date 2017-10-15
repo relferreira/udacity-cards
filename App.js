@@ -13,6 +13,7 @@ import CustomStatusBar from './components/CustomStatusBar';
 import Decks from './components/Decks';
 import NewDeck from './components/NewDeck';
 import DeckDetail from './components/DeckDetail';
+import NewQuestion from './components/NewQuestion';
 
 const store = createStore(reducer);
 
@@ -43,7 +44,10 @@ const Tabs = TabNavigator(
   },
   {
     navigationOptions: {
-      header: null
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: primaryColor
+      }
     },
     tabBarOptions: {
       activeTintColor: white,
@@ -60,6 +64,15 @@ const MainNavigator = StackNavigator({
   },
   DeckDetail: {
     screen: DeckDetail,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: primaryColor
+      }
+    }
+  },
+  NewQuestion: {
+    screen: NewQuestion,
     navigationOptions: {
       headerTintColor: white,
       headerStyle: {

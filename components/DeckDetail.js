@@ -16,6 +16,11 @@ class DeckDetail extends Component {
     };
   };
 
+  handleNewQuestion = () => {
+    const { deck } = this.props;
+    this.props.navigation.navigate('NewQuestion', { deckId: deck.title });
+  };
+
   handleRemove = () => {
     const { deck: { title } } = this.props;
     this.props.removeDeck(title);
@@ -43,7 +48,11 @@ class DeckDetail extends Component {
           </Text>
         </View>
         <View style={styles.buttons}>
-          <CustomButton style={styles.addBtn} textStyle={{ color: gray }}>
+          <CustomButton
+            style={styles.addBtn}
+            textStyle={{ color: gray }}
+            onPress={this.handleNewQuestion}
+          >
             Add Card
           </CustomButton>
           <CustomButton>Start Quiz</CustomButton>

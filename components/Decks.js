@@ -12,6 +12,9 @@ const DATA = [
 ];
 
 class Decks extends Component {
+  static navigationOptions = () => ({
+    title: 'UdaciCards'
+  });
   handleItemClick = title => {
     this.props.navigation.navigate('DeckDetail', { deckId: title });
   };

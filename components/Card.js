@@ -18,18 +18,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 16,
-    marginTop: 10,
+    marginTop: 16,
     marginLeft: 16,
     marginRight: 16,
     borderColor: gray,
     borderWidth: 1,
     borderRadius: 7,
-    shadowColor: 'rgba(0, 0, 0, 0.24)',
+    shadowColor: 'rgba(0, 0, 0, 0.1)',
     shadowOffset: {
       width: 0,
-      height: 2
+      height: 1
     },
-    shadowRadius: 3,
+    shadowRadius: 1,
     shadowOpacity: 1
   },
   title: {
