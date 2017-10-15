@@ -14,6 +14,7 @@ import Decks from './components/Decks';
 import NewDeck from './components/NewDeck';
 import DeckDetail from './components/DeckDetail';
 import NewQuestion from './components/NewQuestion';
+import Quiz from './components/Quiz';
 
 const store = createStore(reducer);
 
@@ -73,6 +74,15 @@ const MainNavigator = StackNavigator({
   },
   NewQuestion: {
     screen: NewQuestion,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: primaryColor
+      }
+    }
+  },
+  Quiz: {
+    screen: Quiz,
     navigationOptions: {
       headerTintColor: white,
       headerStyle: {

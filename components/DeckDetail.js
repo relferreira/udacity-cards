@@ -21,6 +21,11 @@ class DeckDetail extends Component {
     this.props.navigation.navigate('NewQuestion', { deckId: deck.title });
   };
 
+  handleQuizSelection = () => {
+    const { deck } = this.props;
+    this.props.navigation.navigate('Quiz', { deckId: deck.title });
+  };
+
   handleRemove = () => {
     const { deck: { title } } = this.props;
     this.props.removeDeck(title);
@@ -55,7 +60,9 @@ class DeckDetail extends Component {
           >
             Add Card
           </CustomButton>
-          <CustomButton>Start Quiz</CustomButton>
+          <CustomButton onPress={this.handleQuizSelection}>
+            Start Quiz
+          </CustomButton>
           <CustomButton style={styles.removeBtn} onPress={this.handleRemove}>
             Remove
           </CustomButton>
