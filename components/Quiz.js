@@ -98,13 +98,15 @@ class Quiz extends Component {
         </View>
         <View style={styles.buttons}>
           <CustomButton
-            style={{ backgroundColor: green }}
+            style={styles.correctBtn}
+            textStyle={{ color: green }}
             onPress={() => this.handleNextQuestion(true)}
           >
             Correct
           </CustomButton>
           <CustomButton
-            style={{ backgroundColor: red, marginTop: 10 }}
+            style={styles.incorrectBtn}
+            textStyle={{ color: red }}
             onPress={() => this.handleNextQuestion(false)}
           >
             Incorrect
@@ -144,6 +146,17 @@ const styles = StyleSheet.create({
   },
   buttons: {
     padding: 16
+  },
+  correctBtn: {
+    backgroundColor: white,
+    borderWidth: 1,
+    borderColor: green
+  },
+  incorrectBtn: {
+    marginTop: 10,
+    backgroundColor: white,
+    borderWidth: 1,
+    borderColor: red
   }
 });
 

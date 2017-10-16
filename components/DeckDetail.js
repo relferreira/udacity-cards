@@ -5,7 +5,7 @@ import { NavigationActions } from 'react-navigation';
 
 import { removeDeck } from '../actions';
 import { removeStoredDeck } from '../utils/api';
-import { white, gray, red } from '../utils/colors';
+import { white, gray, red, accentColor } from '../utils/colors';
 import CustomButton from './CustomButton';
 
 class DeckDetail extends Component {
@@ -53,19 +53,23 @@ class DeckDetail extends Component {
           <Text style={styles.infoNumber}>{numberOfQuestions} cards</Text>
         </View>
         <View style={styles.buttons}>
-          <CustomButton
-            style={styles.addBtn}
-            textStyle={{ color: gray }}
-            onPress={this.handleNewQuestion}
-          >
-            Add Card
-          </CustomButton>
           {numberOfQuestions > 0 && (
             <CustomButton onPress={this.handleQuizSelection}>
               Start Quiz
             </CustomButton>
           )}
-          <CustomButton style={styles.removeBtn} onPress={this.handleRemove}>
+          <CustomButton
+            style={styles.addBtn}
+            textStyle={{ color: accentColor }}
+            onPress={this.handleNewQuestion}
+          >
+            Add Card
+          </CustomButton>
+          <CustomButton
+            style={styles.removeBtn}
+            textStyle={{ color: red }}
+            onPress={this.handleRemove}
+          >
             Remove
           </CustomButton>
         </View>
@@ -98,14 +102,16 @@ const styles = StyleSheet.create({
     marginRight: 16
   },
   addBtn: {
+    marginTop: 10,
     backgroundColor: white,
-    borderColor: gray,
     borderWidth: 1,
-    marginBottom: 10
+    borderColor: accentColor
   },
   removeBtn: {
     marginTop: 10,
-    backgroundColor: red
+    backgroundColor: white,
+    borderWidth: 1,
+    borderColor: red
   }
 });
 
