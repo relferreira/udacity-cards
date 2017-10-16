@@ -1,5 +1,15 @@
 {
   "expo": {
-    "sdkVersion": "21.0.0"
+    "sdkVersion": "21.0.0",
+    "name": "UdaciCards",
+    "description": "Everyday study with flashcards!",
+    "slug": "udacicards",
+    "version": "1.0",
+    "ios": {
+      "bundleIdentifier": "org.udacicards.exp"
+    },
+    "android": {
+      "package": "org.udacicards.exp"
+    }
   }
 }
