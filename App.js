@@ -48,7 +48,9 @@ const Tabs = TabNavigator(
     navigationOptions: {
       headerTintColor: white,
       headerStyle: {
-        backgroundColor: primaryColor
+        backgroundColor: primaryColor,
+        elevation: 0,
+        shadowOpacity: 0
       }
     },
     tabBarOptions: {
@@ -60,36 +62,28 @@ const Tabs = TabNavigator(
   }
 );
 
+const navigationOptions = {
+  headerTintColor: white,
+  headerStyle: {
+    backgroundColor: primaryColor
+  }
+};
+
 const MainNavigator = StackNavigator({
   Home: {
     screen: Tabs
   },
   DeckDetail: {
     screen: DeckDetail,
-    navigationOptions: {
-      headerTintColor: white,
-      headerStyle: {
-        backgroundColor: primaryColor
-      }
-    }
+    navigationOptions
   },
   NewQuestion: {
     screen: NewQuestion,
-    navigationOptions: {
-      headerTintColor: white,
-      headerStyle: {
-        backgroundColor: primaryColor
-      }
-    }
+    navigationOptions
   },
   Quiz: {
     screen: Quiz,
-    navigationOptions: {
-      headerTintColor: white,
-      headerStyle: {
-        backgroundColor: primaryColor
-      }
-    }
+    navigationOptions
   }
 });
 

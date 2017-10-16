@@ -44,13 +44,13 @@ class DeckDetail extends Component {
   render() {
     const { deck } = this.props;
     if (!deck) return null;
+
+    const numberOfQuestions = this.getQuestionsCount(deck.questions);
     return (
       <View style={styles.constainer}>
         <View style={styles.info}>
           <Text style={styles.infoTitle}>{deck.title}</Text>
-          <Text style={styles.infoNumber}>
-            {this.getQuestionsCount(deck.questions)} cards
-          </Text>
+          <Text style={styles.infoNumber}>{numberOfQuestions} cards</Text>
         </View>
         <View style={styles.buttons}>
           <CustomButton
@@ -60,9 +60,11 @@ class DeckDetail extends Component {
           >
             Add Card
           </CustomButton>
-          <CustomButton onPress={this.handleQuizSelection}>
-            Start Quiz
-          </CustomButton>
+          {numberOfQuestions > 0 && (
+            <CustomButton onPress={this.handleQuizSelection}>
+              Start Quiz
+            </CustomButton>
+          )}
           <CustomButton style={styles.removeBtn} onPress={this.handleRemove}>
             Remove
           </CustomButton>

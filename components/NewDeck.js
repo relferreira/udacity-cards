@@ -4,6 +4,7 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
+  KeyboardAvoidingView,
   StyleSheet
 } from 'react-native';
 import { connect } from 'react-redux';
@@ -45,10 +46,12 @@ class NewDeck extends Component {
     this.props.navigation.navigate('DeckDetail', { deckId: key });
   };
 
+  checkErrors = () => !this.state.value;
+
   render() {
     const { value } = this.state;
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView style={styles.container} behavior="padding">
         <Text style={styles.title}>What is the title of your new deck?</Text>
         <TextInput
           style={styles.input}
@@ -56,10 +59,14 @@ class NewDeck extends Component {
           value={value}
           onChangeText={this.handleTextChange}
         />
-        <CustomButton style={styles.btn} onPress={this.handleSubmit}>
+        <CustomButton
+          style={styles.btn}
+          onPress={this.handleSubmit}
+          disabled={this.checkErrors()}
+        >
           Submit
         </CustomButton>
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }

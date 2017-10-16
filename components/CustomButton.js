@@ -1,11 +1,15 @@
 import React from 'react';
 import { Text, TouchableOpacity, StyleSheet } from 'react-native';
 
-import { white, accentColor } from '../utils/colors';
+import { white, gray, accentColor } from '../utils/colors';
 
-const CustomButton = ({ children, style, textStyle, ...rest }) => {
+const CustomButton = ({ children, style, textStyle, disabled, ...rest }) => {
   return (
-    <TouchableOpacity style={[styles.btn, style]} {...rest}>
+    <TouchableOpacity
+      style={[styles.btn, style, disabled ? styles.disabled : {}]}
+      disabled={disabled}
+      {...rest}
+    >
       <Text style={[styles.text, textStyle]}>{children}</Text>
     </TouchableOpacity>
   );
@@ -13,11 +17,15 @@ const CustomButton = ({ children, style, textStyle, ...rest }) => {
 
 const styles = StyleSheet.create({
   btn: {
-    backgroundColor: accentColor,
     paddingLeft: 16,
     paddingRight: 16,
     paddingTop: 8,
-    paddingBottom: 8
+    paddingBottom: 8,
+    backgroundColor: accentColor,
+    borderRadius: 5
+  },
+  disabled: {
+    backgroundColor: gray
   },
   text: {
     textAlign: 'center',

@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, StyleSheet } from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  KeyboardAvoidingView,
+  StyleSheet
+} from 'react-native';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
 
@@ -51,7 +57,7 @@ class NewQuestion extends Component {
   render() {
     const { question, answer } = this.state;
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView style={styles.container} behavior="padding">
         <View style={styles.inputs}>
           <TextInput
             style={styles.input}
@@ -69,7 +75,7 @@ class NewQuestion extends Component {
         <CustomButton style={styles.btn} onPress={this.handleSubmit}>
           Submit
         </CustomButton>
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }
@@ -85,6 +91,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   input: {
+    height: 44,
     marginBottom: 30
   },
   btn: {
