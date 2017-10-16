@@ -118,7 +118,12 @@ export default class App extends Component {
 
   render() {
     const { loading, error } = this.state;
-    if (loading) return <ActivityIndicator />;
+    if (loading)
+      return (
+        <View style={styles.loading}>
+          <ActivityIndicator />
+        </View>
+      );
     if (error)
       return (
         <View style={styles.errorContainer}>
@@ -140,6 +145,11 @@ export default class App extends Component {
 }
 
 const styles = StyleSheet.create({
+  loading: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
   container: {
     flex: 1,
     backgroundColor: '#fff'
