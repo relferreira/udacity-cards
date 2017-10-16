@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
+import { SimpleLineIcons } from '@expo/vector-icons';
 
 import { saveDeck } from '../actions';
 import { white } from '../utils/colors';
@@ -54,11 +55,14 @@ class NewQuestion extends Component {
     this.props.navigation.dispatch(NavigationActions.back());
   };
 
+  checkErrors = () => !this.state.question || !this.state.answer;
+
   render() {
     const { question, answer } = this.state;
     return (
       <KeyboardAvoidingView style={styles.container} behavior="padding">
         <View style={styles.inputs}>
+          <SimpleLineIcons style={styles.icon} name="question" size={100} />
           <TextInput
             style={styles.input}
             placeholder="Question"
@@ -72,7 +76,11 @@ class NewQuestion extends Component {
             onChangeText={this.handleAnswerChange}
           />
         </View>
-        <CustomButton style={styles.btn} onPress={this.handleSubmit}>
+        <CustomButton
+          style={styles.btn}
+          onPress={this.handleSubmit}
+          disabled={this.checkErrors()}
+        >
           Submit
         </CustomButton>
       </KeyboardAvoidingView>
@@ -89,6 +97,10 @@ const styles = StyleSheet.create({
   inputs: {
     flex: 1,
     justifyContent: 'center'
+  },
+  icon: {
+    alignSelf: 'center',
+    marginBottom: 16
   },
   input: {
     height: 44,

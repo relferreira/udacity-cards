@@ -3,7 +3,14 @@ import { View, Text, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
 
-import { white, primaryColor, red, green, gray } from '../utils/colors';
+import {
+  white,
+  primaryColor,
+  red,
+  green,
+  gray,
+  accentColor
+} from '../utils/colors';
 import {
   clearLocalNotification,
   setLocalNotification
@@ -68,11 +75,15 @@ class Quiz extends Component {
             <Text style={styles.questionSubtitle}>Correct</Text>
           </View>
           <View style={styles.buttons}>
+            <CustomButton
+              style={styles.backBtn}
+              textStyle={{ color: accentColor }}
+              onPress={this.handleBack}
+            >
+              Back to Deck
+            </CustomButton>
             <CustomButton onPress={this.handleRestartQuiz}>
               Restart Quiz
-            </CustomButton>
-            <CustomButton style={{ marginTop: 10 }} onPress={this.handleBack}>
-              Back to Deck
             </CustomButton>
           </View>
         </View>
@@ -157,6 +168,12 @@ const styles = StyleSheet.create({
     backgroundColor: white,
     borderWidth: 1,
     borderColor: red
+  },
+  backBtn: {
+    marginBottom: 10,
+    borderWidth: 1,
+    borderColor: accentColor,
+    backgroundColor: white
   }
 });
 

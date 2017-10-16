@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, ActivityIndicator } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  ActivityIndicator,
+  Platform
+} from 'react-native';
 import { TabNavigator, StackNavigator } from 'react-navigation';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import reducer from './reducers';
-import { primaryColor, white } from './utils/colors';
+import { primaryColor, white, black } from './utils/colors';
 import { fetchDecks } from './utils/api';
 import { setLocalNotification } from './utils/notification';
 import { receiveDecks } from './actions';
@@ -123,7 +129,7 @@ export default class App extends Component {
       <Provider store={store}>
         <View style={styles.container}>
           <CustomStatusBar
-            backgroundColor={primaryColor}
+            backgroundColor={Platform.OS === 'ios' ? black : primaryColor}
             barStyle="light-content"
           />
           <MainNavigator />

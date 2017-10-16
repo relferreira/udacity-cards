@@ -74,8 +74,9 @@ class NewDeck extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
     justifyContent: 'center',
+    paddingLeft: 16,
+    paddingRight: 16,
     backgroundColor: white
   },
   title: {
@@ -84,11 +85,9 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   input: {
-    width: 200,
     height: 44
   },
   btn: {
-    width: 100,
     marginTop: 20
   }
 });
