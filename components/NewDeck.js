@@ -31,18 +31,18 @@ class NewDeck extends Component {
   handleSubmit = () => {
     const { value: key } = this.state;
     const newDeck = { [key]: { title: key, questions: [] } };
+    // Save redux store
     this.props.saveDeck(newDeck);
-    this.toHome();
-
+    // Save in async storage
     submitDeck(newDeck);
+    // Reset state
+    this.setState({ value: '' });
+    // Go to deck detail view
+    this.toDeckDetail(key);
   };
 
-  toHome = () => {
-    this.props.navigation.dispatch(
-      NavigationActions.back({
-        key: 'NewDeck'
-      })
-    );
+  toDeckDetail = key => {
+    this.props.navigation.navigate('DeckDetail', { deckId: key });
   };
 
   render() {

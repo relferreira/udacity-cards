@@ -99,10 +99,10 @@ const styles = StyleSheet.create({
     backgroundColor: white,
     borderColor: gray,
     borderWidth: 1,
-    marginBottom: 20
+    marginBottom: 10
   },
   removeBtn: {
-    marginTop: 20,
+    marginTop: 10,
     backgroundColor: red
   }
 });

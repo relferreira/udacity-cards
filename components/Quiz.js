@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
+import { NavigationActions } from 'react-navigation';
 
 import { white, primaryColor, red, green, gray } from '../utils/colors';
+import {
+  clearLocalNotification,
+  setLocalNotification
+} from '../utils/notification';
 import CustomButton from './CustomButton';
 
 class Quiz extends Component {
@@ -20,6 +25,10 @@ class Quiz extends Component {
     };
   }
 
+  componentDidMount() {
+    clearLocalNotification().then(setLocalNotification);
+  }
+
   handleShowAnswer = () =>
     this.setState(({ showAnswer }) => ({ showAnswer: !showAnswer }));
 
@@ -30,10 +39,19 @@ class Quiz extends Component {
       showAnswer: false
     }));
 
+  handleRestartQuiz = () =>
+    this.setState({
+      questionIndex: 0,
+      showAnswer: false,
+      numCorrect: 0
+    });
+
+  handleBack = () => this.props.navigation.dispatch(NavigationActions.back());
+
   calculateScore = questions => {
     const { numCorrect } = this.state;
 
-    return numCorrect * 100 / questions.length;
+    return (numCorrect * 100 / questions.length).toFixed(1);
   };
 
   render() {
@@ -48,6 +66,14 @@ class Quiz extends Component {
               {`${this.calculateScore(questions)} %`}
             </Text>
             <Text style={styles.questionSubtitle}>Correct</Text>
+          </View>
+          <View style={styles.buttons}>
+            <CustomButton onPress={this.handleRestartQuiz}>
+              Restart Quiz
+            </CustomButton>
+            <CustomButton style={{ marginTop: 10 }} onPress={this.handleBack}>
+              Back to Deck
+            </CustomButton>
           </View>
         </View>
       );

@@ -8,6 +8,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import reducer from './reducers';
 import { primaryColor, white } from './utils/colors';
 import { fetchDecks } from './utils/api';
+import { setLocalNotification } from './utils/notification';
 import { receiveDecks } from './actions';
 import CustomStatusBar from './components/CustomStatusBar';
 import Decks from './components/Decks';
@@ -101,7 +102,9 @@ export default class App extends Component {
       error: null
     };
   }
+
   componentDidMount() {
+    setLocalNotification();
     fetchDecks()
       .then(decks => {
         store.dispatch(receiveDecks(decks));
